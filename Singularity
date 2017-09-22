@@ -9,8 +9,18 @@ export PATH=$PATH:/usr/games/
 AUTHOR Maurizio Polano
 
 %post
+	apt-get update
 
-apt-get update && apt-get install -y locales-all curl wget gawk gcc g++ make cmake automake curl unzip zip bzip2 tar gzip pigz parallel build-essential libncurses5-dev libc6-dev zlib1g zlib1g-dev libtbb-dev libtbb2 python python-dev python-numpy python-biopython python-xlrd python-openpyxl default-jdk
-wget http://sf.net/projects/fusioncatcher/files/bootstrap.py -O bootstrap.py && python bootstrap.py -t --download -y
+	apt-get install -y wget bzip2 perl gawk
+
+	ln -s /bin/tar /bin/gtar
+
+	wget https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh
+
+	bash Anaconda2-4.4.0-Linux-x86_64.sh -b -p /opt/anaconda2
+
+	/opt/anaconda2/bin/conda install -c r r-base=3.3.2 r-essentials=1.5.2 r-devtools=1.12.0
+
+	/opt/anaconda2/bin/conda install -c bioconda --yes  samtools  sambamba deeptools jaffa star-fusion
  
 
